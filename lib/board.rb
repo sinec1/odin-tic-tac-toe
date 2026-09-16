@@ -6,10 +6,10 @@ class Board
   end
 
   def fill(row, column, player)
-    @board[row][column] = player.symbol
+    @board[row][column] = player.letter
   end
 
-  def currentBoard
+  def current_board
     @board.each {|row| p row}
   end
 
