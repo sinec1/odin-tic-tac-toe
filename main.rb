@@ -1,3 +1,7 @@
+require_relative 'lib/board'
+require_relative 'lib/player'
+require_relative 'lib/game'
+
 def get_player_name(playerNumber)
     puts 'Please enter your name'
     name = gets.chomp
@@ -5,9 +9,5 @@ def get_player_name(playerNumber)
     name
 end
 
-def get_player_letter
-  puts 'Please choose your symbol (either X or O)'
-  letter = gets.chomp
-  letter
-end
+
 
