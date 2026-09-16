@@ -1,8 +1,8 @@
 class Player
-  attr_reader :name
-  attr_accessor :score
-  def initialize(name)
+  attr_reader :name, :symbol,:score
+  def initialize(name,symbol)
     @name = name
+    @symbol = symbol
   end
 
   def updateScore()
