@@ -5,6 +5,10 @@ require_relative 'lib/game'
 def get_player_name(playerNumber)
     puts 'Please enter your name:'
     name = gets.chomp
+    if name.size == 0
+      puts 'Please enter a non-empty string'
+      name = gets.chomp
+    end
     puts "Player #{playerNumber}: #{name}"
     name
 end

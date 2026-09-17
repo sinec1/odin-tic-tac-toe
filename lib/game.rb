@@ -26,7 +26,16 @@ class Game
     @current_turn
   end
 
-  def check_slot(row,column)
+  def integer?(input)
+    !Integer(input,exception:false).nil?
+  end
+
+  def check_slot(player_input)
+    return false unless player_input.size == 2
+    player_input.each {|entry| return false unless integer?(entry)}
+    player_input.map! {|entry| entry.to_i - 1} #subtract 1 to account for 0 indexing
+    row = player_input[0]
+    column = player_input[1]
     if @board.empty_slot(row,column)
       return true
     else
@@ -37,11 +46,9 @@ class Game
   def get_player_input
     puts "what row and column would you like to place your symbol (current symbol: #{@current_turn.letter}) (eg. '1,2' for row 1 column 2)"
     player_input = gets.chomp.split(',')
-    player_input.map! {|entry| entry.to_i - 1} #subtract 1 to account for 0 indexing
-    until check_slot(player_input[0],player_input[1])
+    until check_slot(player_input)
       puts "Please re-enter a valid and empty slot!"
       player_input = gets.chomp.split(',')
-      player_input.map! {|entry| entry.to_i - 1}
     end
     player_input
   end
@@ -80,7 +87,6 @@ class Game
     else
       handle_tie
     end
-
     puts "Play again? (y/n)"
     if gets.chomp == 'n'
       return false
@@ -104,8 +110,8 @@ class Game
 
   def print_standings
     puts "Current Standings:"
-    puts "#{@player_one.name} wins: #{@player_one.score}"
-    puts "#{@player_two.name} wins: #{@player_two.score}"
+    puts "#{@player_one.name}: #{@player_one.score} wins"
+    puts "#{@player_two.name}: #{@player_two.score} wins"
   end
 
   def gameReset
