@@ -1,12 +1,12 @@
 class Player
   attr_reader :name, :letter, :score
-  def initialize(name,letter,num)
+  def initialize(name,letter)
     @name = name
     @letter = letter
-    @num = num
+    @score = 0
   end
 
   def update_score()
-    score += 1
+    @score += 1
   end
 end
